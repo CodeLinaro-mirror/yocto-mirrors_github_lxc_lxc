@@ -47,7 +47,14 @@ jobs:
         run: |
           make dist
           TARBALL=$(ls -1 *.tar.gz)
-          mv ${TARBALL} ../$(echo ${TARBALL} | sed -e "s/.tar.gz$/.orig.tar.gz/g" -e "s/lxc-/lxc_/g")
+          # if TARBALL is something like "lxc-6.0.0.tar.gz"
+          # then we want: lxc_6.0.0+daily~noble~202510252032.orig.tar.gz
+          newname=${TARBALL%.tar.gz}
+          newname="${newname/-/_}"
+          RELEASE=${{ matrix.os }}
+          D="$(date -u +%Y%m%d%H%M)"
+          newname="${newname}+daily~${RELEASE}~${D}.orig.tar.gz"
+          mv ${TARBALL} "../${newname}"
 
       - name: Assemble the package
         env:
