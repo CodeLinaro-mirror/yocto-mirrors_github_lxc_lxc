@@ -54,7 +54,7 @@ jobs:
           RELEASE=${{ matrix.os }}
           D="$(date -u +%Y%m%d%H%M)"
           echo "DPKG_DATE=$D" >> $GITHUB_ENV
-          newname="${newname}+daily~${RELEASE}~${D}.orig.tar.gz"
+          newname="${newname}~daily~${RELEASE}~${D}.orig.tar.gz"
           echo "renaming ${TARBALL} to ../${newname}"
           mv ${TARBALL} "../${newname}"
 
@@ -73,7 +73,7 @@ jobs:
           rm -f debian/changelog
           D="${DPKG_DATE}"  # saved from previous step
           dch --create --package lxc \
-            -v 2:${VERSION}+daily~${{ matrix.os }}~${D} \
+            -v 2:${VERSION}~daily~${{ matrix.os }}~${D} \
             --distribution ${{ matrix.os }} \
             "Automated snapshot build."
 
