@@ -54,7 +54,7 @@ jobs:
           RELEASE=${{ matrix.os }}
           D="$(date -u +%Y%m%d%H%M)"
           echo "DPKG_DATE=$D" >> $GITHUB_ENV
-          newname="${newname}+daily~${RELEASE}~${D}.orig.tar.gz"
+          newname="${newname}-0+daily~${RELEASE}~${D}.orig.tar.gz"
           echo "renaming ${TARBALL} to ../${newname}"
           mv ${TARBALL} "../${newname}"
 
