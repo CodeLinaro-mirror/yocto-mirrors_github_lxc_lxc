@@ -1368,7 +1368,7 @@ __noreturn static void do_attach(struct attach_payload *ap)
 		lxc_seccomp_close_notifier_fd(&conf->seccomp);
 	}
 
-	if (conf->cap_inheritance) {
+	if (conf->nonroot_keepcaps) {
 		ret = lxc_set_keepcaps();
 		if (ret < 0)
 			goto on_error;

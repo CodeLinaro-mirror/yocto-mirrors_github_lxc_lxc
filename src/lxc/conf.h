@@ -534,8 +534,9 @@ struct lxc_conf {
 	/* The groups to use for the container. */
 	lxc_groups_t init_groups;
 
-	/* Whether the available caps can be set as inheritable/ambient for the container */
-	bool cap_inheritance;
+	/* Defines whether a privileged container with a nonroot user (init_uid != 0)
+	 * will keep capabilities */
+	bool nonroot_keepcaps;
 
 	/* indicator if the container will be destroyed on shutdown */
 	unsigned int ephemeral;

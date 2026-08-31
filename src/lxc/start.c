@@ -1616,8 +1616,8 @@ static int do_start(void *data)
 			goto out_warn_father;
 	}
 
-	if (handler->conf->cap_inheritance) {
-		NOTICE("Inherit capabilities");
+	if (handler->conf->nonroot_keepcaps) {
+		NOTICE("Keep capabilities");
 		ret = lxc_set_keepcaps();
 		if (ret < 0)
 			goto out_warn_father;
